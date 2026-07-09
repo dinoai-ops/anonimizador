@@ -113,8 +113,15 @@ anonimizador-local/
 ├── entrada/           ← originais (usado pelo modo linha de comando)
 ├── saida/             ← arquivos anonimizados e restaurados
 ├── cofre/             ← mapas de reversão  [CONFIDENCIAL]
-└── relatorios/        ← relatórios LGPD + log_compliance.jsonl (append-only)
+├── relatorios/        ← relatórios LGPD + log_compliance.jsonl (append-only)
+└── exemplos/          ← peças FICTÍCIAS para testar a ferramenta
 ```
+
+> **Quer testar sem arriscar nada?** A pasta [`exemplos/`](exemplos) traz uma
+> petição (PDF), um contrato social (DOCX) e uma procuração (TXT) com dados
+> 100% fictícios. A petição contém, de propósito, um nome que **escapa** da
+> detecção automática — leia o [`exemplos/LEIA-ME.txt`](exemplos/LEIA-ME.txt)
+> e entenda por que a revisão humana é indispensável.
 
 > **O `cofre/` é confidencial.** Cada mapa contém os dados originais e permite
 > reverter a anonimização. Nunca envie o cofre junto com o arquivo anonimizado
