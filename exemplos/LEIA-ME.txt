@@ -1,0 +1,19 @@
+PEÇAS DE DEMONSTRAÇÃO — DADOS 100% FICTÍCIOS
+=============================================
+
+Os três documentos desta pasta foram criados exclusivamente para testar e
+demonstrar o Anonimizador Jurídico LGPD. Todos os nomes, empresas, endereços,
+processos e contatos são INVENTADOS. Os números de CPF e CNPJ possuem dígitos
+verificadores matematicamente válidos, mas foram gerados aleatoriamente e não
+pertencem a ninguém. Qualquer semelhança com pessoas ou empresas reais é mera
+coincidência.
+
+Arquivos:
+  peticao_exemplo.pdf        - petição inicial (teste do fluxo PDF -> TXT/DOCX)
+  contrato_social_exemplo.docx - contrato social (teste de tabelas/parágrafos)
+  procuracao_exemplo.txt     - procuração (teste de texto puro)
+
+Observação didática: a petição contém, de propósito, um nome citado no meio
+do texto sem nenhum gatilho de detecção ("Otávio Bezerra"). Ele NÃO é
+detectado automaticamente — é o exemplo perfeito de por que a etapa de
+revisão humana ("1 - Analisar") é indispensável antes de gravar o resultado.
