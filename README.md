@@ -53,7 +53,7 @@ Arquivos **.txt** não exigem nada além do próprio Python.
 
 ## 2. Como usar o app (sem terminal)
 
-Dê **duplo clique em `Anonimizador.bat`**. A janela do app abre. Então:
+Dê **duplo clique em `Anonimizador.pyw`**. A janela do app abre. Então:
 
 1. **Selecionar arquivo…** — escolha o documento original (.docx, .txt ou .pdf).
 2. **1 · Analisar** — o app lista todas as entidades detectadas: categoria,
@@ -105,7 +105,7 @@ Dê **duplo clique em `Anonimizador.bat`**. A janela do app abre. Então:
 
 ```
 anonimizador-local/
-├── Anonimizador.bat   ← DUPLO CLIQUE AQUI para abrir o app
+├── Anonimizador.pyw   ← DUPLO CLIQUE AQUI para abrir o app
 ├── app.py             ← interface do app local
 ├── anonimizador.py    ← motor de anonimização (v4)
 ├── config.json        ← metadados LGPD (editável pelo app)
@@ -157,12 +157,12 @@ Copie a **pasta inteira** `anonimizador-local` (pen drive, rede etc.) — é o m
 simples e leva junto cofre, relatórios e preferências.
 
 Instalação mínima (apenas o app, sem histórico): copie
-`anonimizador.py`, `app.py`, `Anonimizador.bat`, `config.json` e, se quiser
+`anonimizador.py`, `app.py`, `Anonimizador.pyw`, `config.json` e, se quiser
 manter seus modelos de token, `app_prefs.json`. As pastas `entrada/`, `saida/`,
 `cofre/` e `relatorios/` são criadas automaticamente.
 
 Na máquina de destino, faça a **seção 1** (Python com "Add to PATH" +
-`pip install python-docx pymupdf`) e dê duplo clique em `Anonimizador.bat`.
+`pip install python-docx pymupdf`) e dê duplo clique em `Anonimizador.pyw`.
 
 > Importante: para conseguir **restaurar** arquivos anonimizados antigos na nova
 > máquina, leve também a pasta `cofre/` correspondente.
@@ -223,7 +223,8 @@ python anonimizador.py --restaurar "saida\documento_anonimizado.docx"
 
 | Sintoma | Causa e solução |
 |---|---|
-| Nada acontece ao clicar no `Anonimizador.bat` | Python instalado sem "Add to PATH". Reinstale o Python marcando a caixinha, ou instale pelo instalador oficial novamente (ele oferece "Repair"). |
+| Nada acontece ao clicar no `Anonimizador.pyw` | Python instalado sem "Add to PATH" ou sem associação de arquivos .pyw. Reinstale o Python marcando a caixinha (o instalador oferece "Repair"). Alternativa: abra o Prompt de Comando na pasta e rode `pythonw app.py`. |
+| Windows bloqueia um arquivo ("pode não ser seguro", SmartScreen ou Controle de Aplicativo Inteligente) | Arquivos baixados da internet recebem uma marcação de segurança do Windows. Antes de extrair, clique com o botão direito no **ZIP baixado** → **Propriedades** → marque **Desbloquear** → OK, e só então extraia. Desde a v4.2 o pacote não contém executáveis nem scripts (.bat/.exe) — apenas arquivos Python, abertos pelo Python que você mesmo instalou —, o que evita o bloqueio na grande maioria dos casos. |
 | `'pip' não é reconhecido...` | Mesmo problema de PATH acima. Alternativa: use `py -m pip install python-docx pymupdf`. |
 | "python-docx nao instalado" ao anonimizar | Rode `pip install python-docx` no Prompt de Comando. |
 | "PyMuPDF nao instalado" ao abrir PDF | Rode `pip install pymupdf`. |

@@ -18,7 +18,7 @@ motor do anonimizador.py, em fluxo de duas fases:
 
 Preferencias (modelos de token por categoria) ficam em app_prefs.json.
 
-Uso: duplo clique em "Anonimizador.bat" ou `pythonw app.py`.
+Uso: duplo clique em "Anonimizador.pyw" ou `pythonw app.py`.
 """
 import json
 import os
@@ -39,6 +39,43 @@ ARQ_PREFS = os.path.join(BASE, 'app_prefs.json')
 
 CATEGORIAS = ['NOME', 'DOCUMENTO', 'PROCESSO', 'CONTATO', 'ENDERECO',
               'DADOS_BANCARIOS', 'DADO_VEICULO', 'DADO_SENSIVEL', 'VALOR', 'DATA']
+
+# Opcoes pre-definidas para a Configuracao LGPD (art. 37 e art. 6, VIII).
+# As listas sao sugestoes baseadas no uso tipico da ferramenta em escritorios
+# juridicos; os campos continuam editaveis para valores personalizados.
+PRESETS_LGPD = {
+    'finalidade': [
+        'Uso em IA generativa (minutas, análises e revisão de textos)',
+        'Análise interna do caso',
+        'Elaboração de material didático (aulas, palestras e publicações)',
+        'Compartilhamento com perito ou assistente técnico',
+        'Compartilhamento com advogado correspondente ou parceiro',
+        'Arquivamento com minimização de dados pessoais',
+    ],
+    'destinatario': [
+        'Uso interno (sem compartilhamento externo)',
+        'Ferramenta de IA generativa (ChatGPT, Claude, Gemini etc.)',
+        'Cliente',
+        'Perito ou assistente técnico',
+        'Advogado correspondente ou parceiro',
+        'Órgão público ou tribunal',
+    ],
+    'base_legal': [
+        'Art. 7º, VI, LGPD — exercício regular de direitos em processo',
+        'Art. 7º, V, LGPD — execução de contrato',
+        'Art. 7º, IX, LGPD — legítimo interesse do controlador',
+        'Art. 7º, I, LGPD — consentimento do titular',
+        'Art. 7º, II, LGPD — cumprimento de obrigação legal ou regulatória',
+    ],
+    'categoria_titular': [
+        'Partes processuais',
+        'Clientes',
+        'Partes contrárias e terceiros',
+        'Testemunhas',
+        'Sócios e representantes legais',
+        'Funcionários e colaboradores',
+    ],
+}
 
 # Identidade visual — paleta neutra
 COR_PRIMARIA = '#2F3B4C'   # grafite azulado (cabecalho, botoes)
@@ -506,16 +543,20 @@ class App(tk.Tk):
             'base_legal': 'Base legal (LGPD)',
             'categoria_titular': 'Categoria dos titulares',
         }
+        ttk.Label(dlg, padding=(12, 8),
+                  text='Escolha uma opção na lista ou digite um valor próprio.'
+                  ).grid(row=0, column=0, columnspan=2, sticky='w')
         entradas = {}
-        for i, (campo, rotulo) in enumerate(rotulos.items()):
+        for i, (campo, rotulo) in enumerate(rotulos.items(), start=1):
             ttk.Label(dlg, text=rotulo, padding=(12, 4)).grid(row=i, column=0, sticky='w')
             valor = campos.get(campo, '')
             var = tk.StringVar(value='' if valor.startswith('PREENCHER') else valor)
-            ttk.Entry(dlg, textvariable=var, width=64, font=self.fonte_corpo).grid(
+            ttk.Combobox(dlg, textvariable=var, width=62, font=self.fonte_corpo,
+                         values=PRESETS_LGPD.get(campo, []), height=8).grid(
                 row=i, column=1, sticky='we', padx=(0, 12), pady=3)
             entradas[campo] = var
         rodape = ttk.Frame(dlg, padding=12)
-        rodape.grid(row=len(rotulos), column=0, columnspan=2, sticky='e')
+        rodape.grid(row=len(rotulos) + 1, column=0, columnspan=2, sticky='e')
 
         def salvar():
             novos = {c: v.get().strip() for c, v in entradas.items()}
