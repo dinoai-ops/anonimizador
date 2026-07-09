@@ -1,0 +1,14 @@
+# Dados pessoais / sigilosos — NUNCA versionar (LGPD)
+entrada/
+saida/
+cofre/
+relatorios/
+
+# Configuracao local (metadados LGPD e preferencias do usuario)
+config.json
+app_prefs.json
+
+# Artefatos
+__pycache__/
+*.pyc
+desktop.ini
