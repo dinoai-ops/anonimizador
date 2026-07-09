@@ -115,6 +115,7 @@ class App(tk.Tk):
         self.geometry('1180x680')
         self.minsize(940, 540)
         self.configure(bg=COR_FUNDO)
+        self._configurar_icone()
 
         self.prefs = carregar_prefs()
         self.arquivo = None
@@ -127,6 +128,22 @@ class App(tk.Tk):
 
         self._montar_estilo()
         self._montar_layout()
+
+    def _configurar_icone(self):
+        """Icone proprio na janela e na barra de tarefas. O AppUserModelID
+        separa o app do agrupamento generico do pythonw na barra."""
+        try:
+            import ctypes
+            ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(
+                'DinoAI.AnonimizadorLGPD')
+        except Exception:
+            pass
+        ico = os.path.join(BASE, 'icone.ico')
+        if os.path.exists(ico):
+            try:
+                self.iconbitmap(default=ico)
+            except Exception:
+                pass
 
     # ------------------------------------------------------------------ UI
     def _montar_estilo(self):

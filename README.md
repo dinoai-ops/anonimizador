@@ -78,6 +78,22 @@ Dê **duplo clique em `Anonimizador.pyw`**. A janela do app abre. Então:
    não for localizado pelo nome do arquivo, o app pede para escolher qual mapa
    do cofre aplicar, e informa quantos trechos foram efetivamente revertidos.
 
+### Atalho com ícone (área de trabalho / barra de tarefas)
+
+O Windows não fixa arquivos `.pyw` diretamente na barra de tarefas — mas um
+atalho para o Python resolve:
+
+1. Clique com o botão direito na área de trabalho → **Novo** → **Atalho**.
+2. Em "local do item", digite `pythonw` seguido do caminho completo do
+   `Anonimizador.pyw` entre aspas. Exemplo:
+   `pythonw "C:\Users\voce\anonimizador\Anonimizador.pyw"`
+3. Dê o nome **Anonimizador Jurídico LGPD** e conclua.
+4. Opcional: botão direito no atalho → **Propriedades** → **Alterar Ícone…** →
+   procure o arquivo `icone.ico` que acompanha o programa.
+5. Para fixar: botão direito no atalho → **Fixar na barra de tarefas**
+   (no Windows 11, o comando pode estar em "Mostrar mais opções") — ou
+   pesquise o atalho no menu Iniciar e fixe por lá.
+
 ### Botões auxiliares
 
 - **Modelos de token…** — define o texto default por categoria, válido para as
@@ -106,6 +122,7 @@ Dê **duplo clique em `Anonimizador.pyw`**. A janela do app abre. Então:
 ```
 anonimizador-local/
 ├── Anonimizador.pyw   ← DUPLO CLIQUE AQUI para abrir o app
+├── icone.ico          ← ícone do app (janela, barra de tarefas e atalhos)
 ├── app.py             ← interface do app local
 ├── anonimizador.py    ← motor de anonimização (v4)
 ├── config.json        ← metadados LGPD (editável pelo app)
